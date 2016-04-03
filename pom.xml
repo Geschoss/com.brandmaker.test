@@ -12,10 +12,15 @@
 
 
     <properties>
-        <wildfly-version>1.1.0.Alpha7</wildfly-version>
-        <mysql-version>5.1.38</mysql-version>
         <hibernate-version>5.0.1.Final</hibernate-version>
+        <hibernatejpa-version>1.0.0.Final</hibernatejpa-version>
+        <mysql-version>5.1.38</mysql-version>
         <junit-version>4.12</junit-version>
+        <javaxServlet-version>3.0-alpha-1</javaxServlet-version>
+        <javaee-version>5</javaee-version>
+        <javax-version>7.0</javax-version>
+
+        <wildfly-version>1.1.0.Alpha7</wildfly-version>
     </properties>
 
 
@@ -26,21 +31,47 @@
             <version>${hibernate-version}</version>
         </dependency>
         <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>${hibernatejpa-version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql-version}</version>
         </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit-version}</version>
         </dependency>
+
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>${hibernate-version}</version>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${javaxServlet-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javaee</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>${javaee-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>${javax-version}</version>
         </dependency>
     </dependencies>
+
 
     <build>
         <plugins>
@@ -48,6 +79,24 @@
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>${wildfly-version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.1.1</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
             </plugin>
         </plugins>
     </build>

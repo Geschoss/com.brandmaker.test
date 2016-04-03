@@ -5,15 +5,25 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users", schema = "usersdb")
+@NamedQuery(name = "UsersEntity.getAll", query = "SELECT u from UsersEntity u")
 public class UsersEntity {
     private int id;
     private String firstName;
     private String lastName;
     private int yearOfBirth;
 
+    public UsersEntity(String firstName, String lastName, int yearOfBirth) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.yearOfBirth = yearOfBirth;
+    }
+
+    public UsersEntity() {
+    }
+
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     public int getId() {
         return id;
     }
@@ -58,6 +68,7 @@ public class UsersEntity {
 
     @Override
     public boolean equals(Object o) {
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
