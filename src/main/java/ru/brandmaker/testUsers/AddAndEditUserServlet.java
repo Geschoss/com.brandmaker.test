@@ -35,7 +35,6 @@ public class AddAndEditUserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        System.out.println("logGet:start");
         resp.setContentType("text/html");
         req.setCharacterEncoding("UTF-8");
 
