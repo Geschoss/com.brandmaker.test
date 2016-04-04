@@ -18,7 +18,7 @@ public class DeleteUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        if(req.getParameter("id") != null && req.getParameter("id") != ""){
+        if(req.getParameter("id") != null && !"".equals(req.getParameter("id"))){
             int id = Integer.valueOf(req.getParameter("id"));
             userBean.delete(id);
         }
