@@ -25,7 +25,6 @@ public class AddAndEditUserServlet extends HttpServlet {
         if(req.getParameter("edit") != null){
             int id = Integer.valueOf(req.getParameter("edit"));
             UsersEntity user = userBean.get(id);
-
             req.setAttribute("user", user);
         }
 
