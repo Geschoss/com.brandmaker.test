@@ -10,7 +10,6 @@
     <packaging>war</packaging>
 
 
-
     <properties>
         <hibernate-version>5.0.1.Final</hibernate-version>
         <hibernatejpa-version>1.0.0.Final</hibernatejpa-version>
@@ -19,9 +18,17 @@
         <javaxServlet-version>3.0-alpha-1</javaxServlet-version>
         <javaee-version>5</javaee-version>
         <javax-version>7.0</javax-version>
+        <jaxrs-version>3.0.16.Final</jaxrs-version>
 
         <wildfly-version>1.1.0.Alpha7</wildfly-version>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>jboss</id>
+            <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
 
 
     <dependencies>
@@ -70,6 +77,25 @@
             <artifactId>javaee-web-api</artifactId>
             <version>${javax-version}</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
+            <version>${jaxrs-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxb-provider</artifactId>
+            <version>${jaxrs-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jettison-provider</artifactId>
+            <version>${jaxrs-version}</version>
+        </dependency>
+
+
     </dependencies>
 
 

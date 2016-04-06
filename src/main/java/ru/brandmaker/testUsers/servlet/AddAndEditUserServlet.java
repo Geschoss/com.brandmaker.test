@@ -1,7 +1,7 @@
-package ru.brandmaker.testUsers;
+package ru.brandmaker.testUsers.servlet;
 
 import ru.brandmaker.testUsers.dao.UsersEntity;
-import ru.brandmaker.testUsers.service.UserBean;
+import ru.brandmaker.testUsers.service.DatabaseBean;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -14,7 +14,7 @@ import java.io.IOException;
 @WebServlet("/add")
 public class AddAndEditUserServlet extends HttpServlet {
     @EJB
-    private UserBean userBean;
+    private DatabaseBean databaseBean;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -22,9 +22,9 @@ public class AddAndEditUserServlet extends HttpServlet {
         resp.setContentType("text/html");
         req.setCharacterEncoding("UTF-8");
 
-        if(req.getParameter("edit") != null){
+        if (req.getParameter("edit") != null) {
             int id = Integer.valueOf(req.getParameter("edit"));
-            UsersEntity user = userBean.get(id);
+            UsersEntity user = databaseBean.get(id);
             req.setAttribute("user", user);
         }
 
@@ -41,15 +41,15 @@ public class AddAndEditUserServlet extends HttpServlet {
         String lastName = req.getParameter("lastName");
         int yearOfBirth = Integer.valueOf(req.getParameter("yearOfBirth"));
 
-        if(!"".equals(req.getParameter("id"))){
+        if (!"".equals(req.getParameter("id"))) {
             int id = Integer.valueOf(req.getParameter("id"));
-            UsersEntity user = userBean.get(id);
+            UsersEntity user = databaseBean.get(id);
             user.setYearOfBirth(yearOfBirth);
             user.setLastName(lastName);
             user.setFirstName(firstName);
-            userBean.update(user);
-        } else{
-            userBean.add(new UsersEntity(firstName, lastName, yearOfBirth));
+            databaseBean.update(user);
+        } else {
+            databaseBean.add(new UsersEntity(firstName, lastName, yearOfBirth));
         }
 
         resp.sendRedirect("list");

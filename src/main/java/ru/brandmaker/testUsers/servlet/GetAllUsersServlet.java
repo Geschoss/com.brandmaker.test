@@ -1,7 +1,7 @@
-package ru.brandmaker.testUsers;
+package ru.brandmaker.testUsers.servlet;
 
 import ru.brandmaker.testUsers.dao.UsersEntity;
-import ru.brandmaker.testUsers.service.UserBean;
+import ru.brandmaker.testUsers.service.DatabaseBean;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -13,16 +13,16 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/list")
-public class MainServlet extends HttpServlet {
+public class GetAllUsersServlet extends HttpServlet {
 
     @EJB
-    private UserBean userBean;
+    private DatabaseBean databaseBean;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        List<UsersEntity> allUser = userBean.getAll();
+        List<UsersEntity> allUser = databaseBean.getAll();
 
         req.setAttribute("users", allUser);
 
