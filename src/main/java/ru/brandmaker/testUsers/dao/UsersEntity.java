@@ -1,11 +1,14 @@
 package ru.brandmaker.testUsers.dao;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 @Entity
 @Table(name = "users", schema = "usersdb")
 @NamedQuery(name = "UsersEntity.getAll", query = "SELECT u from UsersEntity u")
+@XmlRootElement(name = "person")
 public class UsersEntity {
     private int id;
     private String firstName;
@@ -24,6 +27,7 @@ public class UsersEntity {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @XmlElement
     public int getId() {
         return id;
     }
@@ -36,6 +40,7 @@ public class UsersEntity {
 
     @Basic
     @Column(name = "first_name", nullable = false, length = 50)
+    @XmlElement
     public String getFirstName() {
         return firstName;
     }
@@ -48,6 +53,7 @@ public class UsersEntity {
 
     @Basic
     @Column(name = "last_name", nullable = false, length = 50)
+    @XmlElement
     public String getLastName() {
         return lastName;
     }
@@ -58,6 +64,7 @@ public class UsersEntity {
 
     @Basic
     @Column(name = "year_of_birth", nullable = false)
+    @XmlElement
     public int getYearOfBirth() {
         return yearOfBirth;
     }
