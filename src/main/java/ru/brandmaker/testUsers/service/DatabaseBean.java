@@ -6,10 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 
@@ -22,11 +19,14 @@ public class DatabaseBean {
     @PersistenceContext(unitName = "DEVMODE")
     private EntityManager em;
 
-
+    @PUT
+    @Path("/addUser")
     public UsersEntity add(UsersEntity user){
         return em.merge(user);
     }
 
+    @POST
+    @Path("/addUser")
     public void update(UsersEntity user){
         add(user);
     }
@@ -39,7 +39,7 @@ public class DatabaseBean {
         return em.find(UsersEntity.class, id);
     }
 
-    @GET
+    @DELETE
     @Path("/deleteUser/{id}")
     public void delete(@PathParam("id") int id){
         em.remove(get(id));
