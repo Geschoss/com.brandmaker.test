@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 
 
@@ -14,7 +15,7 @@ import java.util.List;
 
 @Path("service")
 @Stateless
-public class DatabaseBean {
+public class DatabaseBean extends Application {
 
     @PersistenceContext(unitName = "DEVMODE")
     private EntityManager em;
