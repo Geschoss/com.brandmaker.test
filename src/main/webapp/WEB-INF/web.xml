@@ -6,7 +6,6 @@
 
     <display-name>UsersTest</display-name>
 
-
     <listener>
         <listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
     </listener>
