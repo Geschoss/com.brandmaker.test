@@ -12,12 +12,6 @@ Ext.define('UserCatalog.controller.UserController', {
             ref: 'userGridDelete'},
         {selector: 'addUserFormView',
             ref: 'addUserFormView'},
-        {selector: 'addUserFormView textfield[name=firstName] ',
-            ref: 'addUserFormFirstName'},
-        {selector: 'addUserFormView textfield[name=lastName]',
-            ref: 'addUserFormLastName'},
-        {selector: 'addUserFormView textfield[name=yearOfBirth]',
-            ref: 'addUserFormYearOfBirth'},
         {selector: 'addUserFormView button[action=save]',
             ref: 'addUserFormSave'}
     ],
@@ -33,30 +27,22 @@ Ext.define('UserCatalog.controller.UserController', {
             'userGridView': {
                 cellclick: this.onLineGrid
             },
-            'userGridViewdbClick': {
-                itemdblclick : this.editItem
-            },
             'addUserFormView  button[action=save]': {
                 click: this.onSaveUser
             }
         });
     },
 
-    editItem : function(grid, record) {
-        var view = Ext.widget('addUserFormView');
-        view.down('form').loadRecord(record);
-    },
-
 
     onSaveUser: function (button) {
-        var me = this;
         var userModel = Ext.create('UserCatalog.model.UsersEntity');
         userModel.set(this.getAddUserFormView().down('form').getValues());
+        console.log(userModel.get('birthday'));
+        console.log(userModel.get('firstName'));
         userModel.save({
             success: function (operation, response) {
                 var objAjax = operation.data;
                 Ext.getStore('UserStore').add(objAjax);
-                me.getAddUserFormView().close();
             },
             failure: function (dummy, result) {
                 Ext.MessageBox.show({

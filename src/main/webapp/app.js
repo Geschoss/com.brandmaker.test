@@ -1,9 +1,16 @@
+Ext.require([
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.state.*',
+    'Ext.form.*'
+]);
+
 Ext.application({
     name: 'UserCatalog',
 
     views: [
         'AddUserFormView',
-        'UserCatalogView',
         'UserGridView'
     ],
     controllers : [
@@ -15,11 +22,15 @@ Ext.application({
     ],
 
     launch: function () {
-        Ext.create('Ext.container.Viewport', {
-            layout: 'fit',
+        new Ext.window.Window({
+            width: 700,
+            height: 400,
+            title: 'Users',
             items: {
-                xtype  : 'userCatalogView'
-            }
-        });
+                xtype  : 'userGridView'
+            },
+            layout: 'fit',
+            closable: false
+        }).show();
     }
 });

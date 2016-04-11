@@ -1,56 +1,68 @@
 Ext.define('UserCatalog.view.UserGridView', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.userGridView',
-    width: 400,
-    height: 300,
-    frame: true,
     store:'UserStore',
-    iconCls: 'icon-user',
-    viewConfig:{
-        markDirty:false
-    },
     columns: [
         {
             text: 'ID',
             sortable: true,
             width: 30,
+            flex: 1,
             dataIndex: 'id',
         },
         {
             text: 'Имя',
             sortable: true,
             dataIndex: 'firstName',
-            flex : 1
+            flex : 1,
+            field: {
+                xtype: 'textfield'
+            }
         },
         {
             text: 'Фамилия',
             sortable: true,
             dataIndex: 'lastName',
-            flex : 1
+            flex : 1,
+            field: {
+                xtype: 'textfield'
+            }
         },
         {
-            text: 'Год рождения',
-            sortable: true,
-            dataIndex: 'yearOfBirth',
-            flex : 1
+            xtype: 'datecolumn',
+            header: 'День рождения',
+            dataIndex: 'birthday',
+            field: {
+                xtype: 'datefield',
+                dateFormat: 'Y-m-d'
+            }
         }
     ],
-    selType: 'rowmodel',
     dockedItems: [
         {
             xtype: 'toolbar',
             items: [
                 {
                     text: 'Добавить',
-                    action: 'add',
+                    action: 'add'
                 },
                 '-',
                 {
-                    action: 'delete',
                     text: 'Удалить',
+                    action: 'delete',
                     disabled: true
                 }
             ]
         }
-    ]
+    ],
+    plugins: Ext.create('Ext.grid.plugin.RowEditing', {
+        listeners: {
+            cancelEdit: function(rowEditing, context) {
+                if (context.record.phantom) {
+                    store.remove(context.record);
+                }
+            }
+        }
+    }),
+    renderTo: Ext.getBody()
 });

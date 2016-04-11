@@ -10,7 +10,7 @@ Ext.define('UserCatalog.view.AddUserFormView', {
             xtype: 'form',
             items: [
                 {
-                    xtype: 'textfield',
+                    xtype: 'numberfield',
                     name: 'id',
                     fieldLabel: 'id',
                     hidden: true,
@@ -30,13 +30,12 @@ Ext.define('UserCatalog.view.AddUserFormView', {
                     blankText: 'Это поле должно быть заполнено'
                 },
                 {
-                    xtype: 'textfield',
-                    name: 'yearOfBirth',
-                    fieldLabel: 'Год рождения',
-                    regex: /^([0-9]{1,20})*$/,
-                    regexText: 'Год должен состоять из цифр',
+                    xtype: 'datefield',
+                    name: 'birthday',
+                    fieldLabel: 'birthday',
                     allowBlank: false,
                     blankText: 'Это поле должно быть заполнено'
+
                 }
             ]
         }

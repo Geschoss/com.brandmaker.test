@@ -21,23 +21,16 @@ public class DatabaseBean {
     }
 
 
-
     public void add(UsersEntity user){
         manager.persist(user);
-
     }
 
     public void update(UsersEntity user){
         manager.merge(user);
     }
 
-
-    public UsersEntity findById(int id){
-        return manager.find(UsersEntity.class, id);
-    }
-
     public void delete(int id){
-        manager.remove(findById(id));
+        manager.remove(manager.find(UsersEntity.class, id));
     }
 
 

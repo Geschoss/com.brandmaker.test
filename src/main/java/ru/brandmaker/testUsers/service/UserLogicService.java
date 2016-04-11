@@ -7,6 +7,8 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.sql.Date;
+import java.util.Calendar;
 
 
 @Path("service")
@@ -20,7 +22,6 @@ public class UserLogicService {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public ExtResult getAll(){
-        System.out.println("GET-");
         return new ExtResult(true, databaseBean.getUsers());
     }
 
@@ -29,10 +30,9 @@ public class UserLogicService {
     @Produces(MediaType.APPLICATION_JSON)
     public ExtResult add(UsersEntity user){
         System.out.println("POST-" + user.toString());
-        if (user.getId() == 0)
-            databaseBean.add(user);
-        else
-            databaseBean.update(user);
+        java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
+        user.setBirthday(timeNow);
+        databaseBean.add(user);
         return new ExtResult(true, user);
     }
 
@@ -40,26 +40,12 @@ public class UserLogicService {
     @Path("/delete/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public void delete(@PathParam("id") int id){
-        System.out.println("DELETE-" + id);
         databaseBean.delete(id);
     }
-
-
     @PUT
-    public void update(UsersEntity user){
-        add(user);
-    }
-
-/*
-
-    @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public UsersEntity get(@PathParam("id") int id){
-        return em.find(UsersEntity.class, id);
+    public void update(UsersEntity user){
+        databaseBean.update(user);
     }
-*/
-
-
-
 }

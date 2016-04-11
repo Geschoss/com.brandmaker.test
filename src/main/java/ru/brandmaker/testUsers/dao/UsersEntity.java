@@ -3,6 +3,7 @@ package ru.brandmaker.testUsers.dao;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.sql.Date;
 
 
 @Entity
@@ -13,12 +14,14 @@ public class UsersEntity {
     private int id;
     private String firstName;
     private String lastName;
-    private int yearOfBirth;
+    private Date birthday;
 
-    public UsersEntity(String firstName, String lastName, int yearOfBirth) {
+
+    public UsersEntity(int id, String firstName, String lastName, Date birthday) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.yearOfBirth = yearOfBirth;
+        this.birthday = birthday;
     }
 
     public UsersEntity() {
@@ -36,8 +39,6 @@ public class UsersEntity {
         this.id = id;
     }
 
-
-
     @Basic
     @Column(name = "first_name", nullable = false, length = 50)
     @XmlElement
@@ -48,8 +49,6 @@ public class UsersEntity {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
-
 
     @Basic
     @Column(name = "last_name", nullable = false, length = 50)
@@ -62,16 +61,19 @@ public class UsersEntity {
         this.lastName = lastName;
     }
 
+
+
     @Basic
-    @Column(name = "year_of_birth", nullable = false)
+    @Column(name = "birthday", nullable = false)
     @XmlElement
-    public int getYearOfBirth() {
-        return yearOfBirth;
+    public Date getBirthday() {
+        return birthday;
     }
 
-    public void setYearOfBirth(int yearOfBirth) {
-        this.yearOfBirth = yearOfBirth;
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -82,7 +84,7 @@ public class UsersEntity {
         UsersEntity that = (UsersEntity) o;
 
         if (id != that.id) return false;
-        if (yearOfBirth != that.yearOfBirth) return false;
+        if (birthday != that.birthday) return false;
         if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
         if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
 
@@ -94,12 +96,13 @@ public class UsersEntity {
         int result = id;
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + yearOfBirth;
+        result = 31 * result + birthday.hashCode();
         return result;
     }
 
     @Override
     public String toString() {
-        return this.getId() + ": " +this.getFirstName() + " " + this.getLastName() + "; " + this.getYearOfBirth();
+        return this.getId() + ": " +this.getFirstName() + " " + this.getLastName() + "; " + this.getBirthday();
     }
+
 }
