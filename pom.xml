@@ -106,7 +106,6 @@
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>${wildfly-version}</version>
             </plugin>
-
         </plugins>
     </build>
 

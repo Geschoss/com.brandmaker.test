@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="ext 6" type="javaScript">
+    <properties>
+      <option name="frameworkName" value="ExtJS 4.2" />
+      <sourceFilesUrls>
+        <item url="file://C:/EAI/ext-6.0.2-trial/ext-6.0.2/build/ext-debug.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://C:/EAI/ext-6.0.2-trial/ext-6.0.2/build/ext-debug.js" />
+      <root url="file://C:/EAI/ext-6.0.2-trial/ext-6.0.2/build/ext.js" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
