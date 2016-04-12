@@ -29,9 +29,12 @@ public class UserLogicService {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public ExtResult add(UsersEntity user){
+        //fix
+        //date == null??
         System.out.println("POST-" + user.toString());
         java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
         user.setBirthday(timeNow);
+        //fix
         databaseBean.add(user);
         return new ExtResult(true, user);
     }
@@ -42,6 +45,7 @@ public class UserLogicService {
     public void delete(@PathParam("id") int id){
         databaseBean.delete(id);
     }
+
     @PUT
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)

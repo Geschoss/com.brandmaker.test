@@ -37,8 +37,13 @@ Ext.define('UserCatalog.controller.UserController', {
     onSaveUser: function (button) {
         var userModel = Ext.create('UserCatalog.model.UsersEntity');
         userModel.set(this.getAddUserFormView().down('form').getValues());
+        //fix
+        //date == null??
         console.log(userModel.get('birthday'));
         console.log(userModel.get('firstName'));
+        console.log(userModel.get('id'));
+        console.log(userModel.get('lastName'));
+        //fix
         userModel.save({
             success: function (operation, response) {
                 var objAjax = operation.data;

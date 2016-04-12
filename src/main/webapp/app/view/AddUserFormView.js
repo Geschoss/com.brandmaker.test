@@ -32,8 +32,10 @@ Ext.define('UserCatalog.view.AddUserFormView', {
                 {
                     xtype: 'datefield',
                     name: 'birthday',
-                    fieldLabel: 'birthday',
+                    fieldLabel: 'День рождения',
+                    value: new Date(),
                     allowBlank: false,
+                    dateFormat: 'Y-m-d',
                     blankText: 'Это поле должно быть заполнено'
 
                 }
