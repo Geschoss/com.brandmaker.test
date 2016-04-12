@@ -7,8 +7,6 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.sql.Date;
-import java.util.Calendar;
 
 
 @Path("service")
@@ -21,20 +19,14 @@ public class UserLogicService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public ExtResult getAll(){
+    public ExtResult getAll() {
         return new ExtResult(true, databaseBean.getUsers());
     }
 
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public ExtResult add(UsersEntity user){
-        //fix
-        //date == null??
-        System.out.println("POST-" + user.toString());
-        java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
-        user.setBirthday(timeNow);
-        //fix
+    public ExtResult add(UsersEntity user) {
         databaseBean.add(user);
         return new ExtResult(true, user);
     }
@@ -42,14 +34,14 @@ public class UserLogicService {
     @DELETE
     @Path("/delete/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public void delete(@PathParam("id") int id){
+    public void delete(@PathParam("id") int id) {
         databaseBean.delete(id);
     }
 
     @PUT
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public void update(UsersEntity user){
+    public void update(UsersEntity user) {
         databaseBean.update(user);
     }
 }

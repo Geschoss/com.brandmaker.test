@@ -34,8 +34,9 @@ Ext.define('UserCatalog.view.AddUserFormView', {
                     name: 'birthday',
                     fieldLabel: 'День рождения',
                     value: new Date(),
+                    format: 'd/m/Y',
+                    submitFormat: 'Y-m-d',
                     allowBlank: false,
-                    dateFormat: 'Y-m-d',
                     blankText: 'Это поле должно быть заполнено'
 
                 }

@@ -10,8 +10,7 @@ Ext.define('UserCatalog.model.UsersEntity', {
         {
             name: 'birthday',
             type: 'date',
-            dateFormat: 'Y-m-d',
-            submitFormat: 'Y-m-d'
+            dateFormat: 'Y-m-d'
         },
         'firstName', 'lastName'
     ],
